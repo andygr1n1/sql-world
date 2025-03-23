@@ -1,0 +1,33 @@
+networks:
+    sql-world-network:
+        name: sql-world-network
+
+services:
+    postgres:
+        image: postgres
+        container_name: sql-world-db
+        restart: always
+        volumes:
+            - db_sql_network:/var/lib/postgresql/data/pgdata
+        env_file:
+            - .env
+        ports:
+            - '5500:5432'
+        networks:
+            - sql-world-network
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+            interval: 10s
+            timeout: 5s
+            retries: 3
+    adminer:
+        image: adminer
+        container_name: sql-world-adminer
+        restart: always
+        ports:
+            - 5501:8080
+        networks:
+            - sql-world-network
+
+volumes:
+    db_sql_network:
