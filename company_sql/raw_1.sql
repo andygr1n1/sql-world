@@ -35,8 +35,85 @@ UPDATE employee SET super_id = 8, branch_id = 8 WHERE emp_id = 9;
 UPDATE employee SET super_id = 9, branch_id = 9 WHERE emp_id = 10;
 UPDATE employee SET super_id = 10, branch_id = 10 WHERE emp_id = 1;
 
+ALTER TABLE employee 
+ADD COLUMN salary int;
+
+UPDATE employee
+SET salary = 1000000 * emp_id;
 
 
+INSERT
+	INTO
+	branch_supplier (branch_id,
+	supplier_name,
+	supply_type)
+VALUES
+(2,
+'Hammer Mill',
+'Paper'),
+(2,
+'Uni-ball',
+'Writing Utensils'),
+(3,
+'Patriot Paper',
+'Paper'),
+(2,
+'J.T. Forms & Lables',
+'Custom'),
+(3,
+'Uni-ball',
+'Writing Utensils'),
+(3,
+'Hammer Mill',
+'Paper'),
+(3,
+'Snamford Lables',
+'Custom');
 
+INSERT
+	INTO
+	client (client_name,
+	branch_id)
+VALUES
+('Andrei',
+1),
+('Uni-ball',
+2),
+('Patriot Paper',
+3),
+('J.T. Forms & Lables',
+4),
+('Uni-ball',
+5),
+('Hammer Mill',
+6),
+('Snamford Lables',
+7);
 
-
+INSERT
+	INTO
+	works_with (emp_id,
+	client_id,
+	total_sales)
+VALUES
+(1,
+1,
+1155000),
+(1,
+2,
+155000),
+(2,
+4,
+255000),
+(4,
+1,
+355000),
+(5,
+4,
+55000),
+(1,
+5,
+55000),
+(2,
+3,
+655000);
